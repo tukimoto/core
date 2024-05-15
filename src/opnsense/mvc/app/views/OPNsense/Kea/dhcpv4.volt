@@ -69,15 +69,6 @@
             }
         );
 
-        $("#grid-options").UIBootgrid(
-            {   search:'/api/kea/dhcpv4/search_option',
-                get:'/api/kea/dhcpv4/get_option/',
-                set:'/api/kea/dhcpv4/set_option/',
-                add:'/api/kea/dhcpv4/add_option/',
-                del:'/api/kea/dhcpv4/del_option/'
-            }
-        );
-
         $("#reconfigureAct").SimpleActionButton({
             onPreAction: function() {
                 const dfObj = new $.Deferred();
@@ -120,7 +111,6 @@
     <li class="active"><a data-toggle="tab" href="#settings" id="tab_settings">{{ lang._('Settings') }}</a></li>
     <li><a data-toggle="tab" href="#subnets" id="tab_pools"> {{ lang._('Subnets') }} </a></li>
     <li><a data-toggle="tab" href="#reservations" id="tab_reservations"> {{ lang._('Reservations') }} </a></li>
-    <li><a data-toggle="tab" href="#options" id="tab_options"> {{ lang._('Custom Options') }} </a></li>
     <li><a data-toggle="tab" href="#ha-peers" id="tab_ha-peers"> {{ lang._('HA Peers') }} </a></li>
 </ul>
 <div class="tab-content content-box">
@@ -256,4 +246,3 @@
 {{ partial("layout_partials/base_dialog",['fields':formDialogSubnet,'id':'DialogSubnet','label':lang._('Edit Subnet')])}}
 {{ partial("layout_partials/base_dialog",['fields':formDialogReservation,'id':'DialogReservation','label':lang._('Edit Reservation')])}}
 {{ partial("layout_partials/base_dialog",['fields':formDialogPeer,'id':'DialogPeer','label':lang._('Edit Peer')])}}
-{{ partial("layout_partials/base_dialog",['fields':formDialogOption,'id':'DialogOption','label':lang._('Edit Option')])}}
