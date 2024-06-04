@@ -32,6 +32,7 @@ use OPNsense\Base\FieldTypes\BaseField;
 use OPNsense\Base\Validators\CallbackValidator;
 use Phalcon\Filter\Validation\Validator\Regex;
 use Phalcon\Filter\Validation\Validator\ExclusionIn;
+use OPNsense\Firewall\Util;
 
 /**
  * Class AliasNameField
@@ -85,13 +86,11 @@ class AliasNameField extends BaseField
             $validators[] = new CallbackValidator(
                 [
                     "callback" => function ($value) {
-                        if (
-                            getservbyname($value, 'tcp') ||
-                            getservbyname($value, 'udp') || getprotobyname($value)
-                        ) {
-                            return array(gettext('Reserved protocol or service names may not be used'));
+                        $result = [];
+                        if (Util::getservbyname($value) || getprotobyname($value)) {
+                            $result[] = gettext('Reserved protocol or service names may not be used');
                         }
-                        return array();
+                        return $result;
                     }
                 ]
             );
