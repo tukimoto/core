@@ -495,7 +495,7 @@ function rrd_configure($verbose = false, $bootup = false)
         }
 
         /* the CPU Temperature gathering function */
-        $rrdupdatesh .= "CPUTEMP=\$(/usr/local/opnsense/scripts/system/temperature.sh rrd)\n";
+        $rrdupdatesh .= "CPUTEMP=\$(/usr/local/opnsense/scripts/system/temperature.sh)\n";
         $rrdupdatesh .= "$rrdtool update $rrddbpath$ifname$cputemp N:\${CPUTEMP}\n";
         /* end CPU Temp gathering */
 
